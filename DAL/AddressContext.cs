@@ -20,7 +20,6 @@ namespace AddressBook.DAL
         {
             //Cusomized conventions can be configured here
 
-            base.OnModelCreating(modelBuilder);
         }
 
     }

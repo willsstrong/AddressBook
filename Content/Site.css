@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#address-book{
+    width: inherit;
+}
+
+.nav.nav-tabs{
+    width:100%;
+}
+
+#address-tabs li a {
+    border-color: black;
+    background-color: darkgray;
+    color: white;
+}
+
+#address-tabs li a.active {
+    border-bottom-color: transparent;
+    background-color:whitesmoke;
+    color:black;
+}
+
+.page-content .tab-pane {
+    border: solid 1px black;
+    border-top: 0;
+    border-color: black;
+    min-height: 250px;
+    background-color: whitesmoke;
+}

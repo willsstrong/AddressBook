@@ -9,26 +9,47 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@*
-TODO//  - Sort entries A through Z and group into 'ABC''DEF' 'GHI'...Etc by Last name
-        - Create a user interface the resembled a tabbed addressbook with tabs organized as per above
-        - 
 
-*@
 
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Menu 2</a></li>
-    <li><a href="#">Menu 3</a></li>
-</ul>
+<!--    Tab Navigation
+        This will render a tabbed inteface that sorts the address entries alphabetically
+ -->
+<div class="container" id="address-book">
+    <ul class="nav nav-tabs nav-fill" id="address-tabs">
 
+        @for (char c = 'A'; c <= 'Z'; c++)  //Automatically create tabs from every letter
+        {
+            if (c == 'A') //first nav-item needs to implement the .active style class
+            {
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#A">A</a></li>
+            }
+            else
+            {
+                string sect = "sect" + c;
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="@sect">@c</a></li>
+            }
+        }
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content page-content">
+        <!--
+        for each tab render content pane including table heading
+         -->
+        <div class="tab-pane container active" id="A">
+            <h2>ADDRESS ENTRIES A </h2>
+        </div>
+    </div>
+</div>
+
+<!--  LIST ADDRESS DATA  -->
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.ActionLink("Last Name","Index",new {sortOrder = ViewBag.LastNameSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FirstNameSortParam })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Address)
