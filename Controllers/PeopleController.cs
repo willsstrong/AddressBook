@@ -15,27 +15,17 @@ namespace AddressBook.Controllers
         // GET: People
         public ViewResult Index(string TabID)
         {
-            ViewBag.TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;
-
-
-
-            //allow for interactive sorting by name(first or last), address, etc
-            //ViewBag.LastNameSortParam = string.IsNullOrEmpty(sortOrder) ? "l-name_desc" : "";
-            //ViewBag.FirstNameSortParam = sortOrder == "First Name" ? "f-name_desc": "First Name";
-            //Add more sort options; City, Province.
-
-            //fetch only records the begin with letter [tab]
-
-
+            //page will load Tab 'A' by default or whatever tab was selected
+            ViewBag.TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;      
             if (string.IsNullOrEmpty(TabID))
             {
                 TabID = "A";
             }
             
+            //GET 
             var people = from s in db.Person select s;
-
-
-            //var people = from s in db.Person select s;      //loads database table into var people
+            
+            //asks for 
             var query = people.Where(s => s.LastName.StartsWith(TabID));
 
 
