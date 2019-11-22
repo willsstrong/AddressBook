@@ -4,6 +4,7 @@ using System.Net;
 using System.Web.Mvc;
 using AddressBook.DAL;
 using AddressBook.Models;
+using PagedList;
 
 namespace AddressBook.Controllers
 {
@@ -12,84 +13,51 @@ namespace AddressBook.Controllers
         private AddressContext db = new AddressContext();
 
         // GET: People
-        public ViewResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string TabID)
         {
+            ViewBag.TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;
+
+
 
             //allow for interactive sorting by name(first or last), address, etc
-            ViewBag.LastNameSortParam = string.IsNullOrEmpty(sortOrder) ? "l-name_desc" : "";
-            ViewBag.FirstNameSortParam = sortOrder == "First Name" ? "f-name_desc": "First Name";
+            //ViewBag.LastNameSortParam = string.IsNullOrEmpty(sortOrder) ? "l-name_desc" : "";
+            //ViewBag.FirstNameSortParam = sortOrder == "First Name" ? "f-name_desc": "First Name";
             //Add more sort options; City, Province.
-            var people = from s in db.Person
-                         select s;
 
-            if (!string.IsNullOrEmpty(searchString))
+            //fetch only records the begin with letter [tab]
+
+
+            if (string.IsNullOrEmpty(TabID))
             {
-                people = people.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
+                TabID = "A";
             }
+            
+            var people = from s in db.Person select s;
 
 
-            switch (sortOrder)
-            {
-                case "l-name_desc":
-                    people = people.OrderByDescending(s => s.LastName);
-                    break;
-                case "f-name_desc":
-                    people = people.OrderByDescending(s => s.FirstName);
-                    break;
-                default:
-                    people = people.OrderByDescending(s => s.LastName);     //list will sort by last name as default
-                    break;
-            }
+            //var people = from s in db.Person select s;      //loads database table into var people
+            var query = people.Where(s => s.LastName.StartsWith(TabID));
 
-            return View(people.ToList());
+
+
+ 
+            return View(query.ToList());
         }
 
         //Record Search Page  
         public ViewResult Search(string searchString)
         {
-      
             var people = from s in db.Person select s;
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
+ 
                 // Right now I am only searching by first name or last name.  It would be more functional to
                 // be able to search by any field. 
                 people = people.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
-            }
+
+          
             //Right now the seach page displays all records on start.  I want it to only show the heading and 
             //no records until a search is requested.
             return View(people.ToList());
-        }
-
-
-        public ActionResult AddrsTabSection(string sortOrder)  // alphabatized index tab contents
-        {
-
-            //click on letter tab
-            //pass letter label to controller
-            //query database for all people with last name start with 'letter'
-            //pass resulting list to AddrsTabSection partial view
-            //view builds the tab content and passes to People/Index
-
-            //allow for interactive sorting by name(first or last), address, etc
-            ViewBag.LastNameSortParam = string.IsNullOrEmpty(sortOrder) ? "l-name_desc" : "";
-            ViewBag.FirstNameSortParam = sortOrder == "First Name" ? "f-name_desc" : "First Name";
-            var people = from s in db.Person
-                         select s;
-            switch (sortOrder)
-            {
-                case "l-name_desc":
-                    people = people.OrderByDescending(s => s.LastName);
-                    break;
-                case "f-name_desc":
-                    people = people.OrderByDescending(s => s.FirstName);
-                    break;
-                default:
-                    people = people.OrderByDescending(s => s.LastName);     //list will sort by last name by default
-                    break;
-            }
-
-            return PartialView(people.ToList());
         }
 
         // GET: People/Details/5

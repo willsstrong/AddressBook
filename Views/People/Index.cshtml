@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<AddressBook.Models.Person>
 
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Address Book";
+    var TabID = 'A';
 }
 
 <h2>Index</h2>
@@ -10,107 +12,106 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-
-<!--    Tab Navigation
-        This will render a tabbed inteface that sorts the address entries alphabetically
+<!--
+        This will render a bootstrap tab ribbon that with tabs for each letter from a-z
  -->
-<div class="container" id="address-book">
-    <ul class="nav nav-tabs nav-fill" id="address-tabs">
 
-        @for (char c = 'A'; c <= 'Z'; c++)  //Automatically create tabs from every letter
+<ul class="nav nav-tabs nav-fill" role="tablist" id="address-tabs">
+
+    @for (char c = 'A'; c <= 'Z'; c++)  //Render tabs from every letter
+    {
+        string tabID = Char.ToString(c);
+        if (c == 'A') //first nav-item needs to implement the .active style class
         {
-            if (c == 'A') //first nav-item needs to implement the .active style class
-            {
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#A">A</a></li>
-            }
-            else
-            {
-                string sect = "sect" + c;
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="@sect">@c</a></li>
-            }
-        }
-    </ul>
 
-    <!-- Tab Content -->
-    <div class="tab-content page-content">
-        <!--
-        for each tab render content pane including table heading
-         -->
-        <div class="tab-pane container active" id="A">
-            <h2>ADDRESS ENTRIES A </h2>
-        </div>
+            <li class="nav-item">
+                <span class="nav-link active"  role="tab">@Html.ActionLink(tabID, "Index", new { TabID = tabID } )</span>
+            </li>
+        }
+        else
+        {
+            TabID = c;
+            <li class="nav-item">
+                <span class="nav-link"  role="tab">@Html.ActionLink(tabID, "Index", new { TabID = tabID })</span>
+            </li>
+        }
+    }
+</ul>
+
+<!-- Tab Content -->
+<div class="tab-content page-content">
+    <div class="tab-pane fade show active" role="tabpanel">
+        TODO: Load List of Poepole
+        <table class="table">
+            <tr>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Province
+                </th>
+                <th>
+                    Postal Code
+                </th>
+                <th>
+                    Phone: Main
+                </th>
+                <th>
+                    Phone: Cell
+                </th>
+                <th>
+                    Email
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Province)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumMain)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumCell)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
 </div>
-
-<!--  LIST ADDRESS DATA  -->
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Last Name","Index",new {sortOrder = ViewBag.LastNameSortParam })
-        </th>
-        <th>
-            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FirstNameSortParam })
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Province)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumMain)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumCell)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Province)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumMain)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumCell)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>

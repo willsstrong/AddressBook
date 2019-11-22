@@ -227,8 +227,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\People\AddrsTabSection - Copy.cshtml" />
-    <Content Include="Views\People\AddrsTabSection.cshtml" />
     <Content Include="Views\People\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>

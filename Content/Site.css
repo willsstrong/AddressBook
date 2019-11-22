@@ -5,9 +5,11 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 50px;
 }
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -23,25 +25,43 @@ textarea {
     max-width: 280px;
 }
 
-#address-book{
-    width: inherit;
+
+.nav.nav-link {
+    background-color: darkgrey;
 }
 
-.nav.nav-tabs{
+/*#address-tabs .span li {
+    border-color: black;
+    background-color: darkgray;
+    color: white;
+}
+#address-tabs li .span .active {
+    border-bottom-color: transparent;
+    background-color: whitesmoke;
+    color: black;
+}*/
+
+/*.nav.nav-tabs{
     width:100%;
 }
 
-#address-tabs li a {
+.nav.nav-tabs{
+    border-bottom-color: transparent;
+    background-color:whitesmoke;
+    color:black;
+}
+
+#address-tabs li {
     border-color: black;
     background-color: darkgray;
     color: white;
 }
 
-#address-tabs li a.active {
+#address-tabs li .active {
     border-bottom-color: transparent;
     background-color:whitesmoke;
     color:black;
-}
+}*/
 
 .page-content .tab-pane {
     border: solid 1px black;
