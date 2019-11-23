@@ -3,25 +3,24 @@
 
 @{
     ViewBag.Title = "Address Book";
-    var TabID = 'A';
+    var tabID = "";
 }
 
 <h2>Address Book Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<button type="button" class="btn-secondary">  
+    @Html.ActionLink("Create New", "Create", new {@class = "btn-secondary"})
+</button>
+
 
 <!--    This will render a bootstrap tab ribbon with tabs for each letter from a-z  -->
-<ul class="nav nav-tabs nav-fill" role="tablist" id="address-tabs">
+<ul class="nav nav-tabs nav-fill" style="margin-top:20px" role="tablist" id="address-tabs">
 
-    @for (char c = 'A'; c <= 'Z'; c++)  //Render tabs from every letter
+    @for (char c = 'A'; c <= 'Z'; c++)  //  Render tabs from every letter
     {
-        string tabID = Char.ToString(c);
-        //TabID = c;
-
+        tabID = Char.ToString(c);   //  Needs to be string for controller to check for NULLorEmpty
+       
         //  selected tab need to be have the active class applied
-        //
         <li class="nav-item">
             @Html.ActionLink(tabID, "Index", new { TabID = tabID }, 
             new { @class = "nav-link tab-link" })
@@ -30,79 +29,9 @@
     }
 </ul>
 
-<!-- Tab Content -->
+<!-- Tab Pane Content -->
 <div class="tab-content page-content">
     <div class="tab-pane show active" role="tabpanel">
-        <table class="table">
-            <tr>
-                <th>
-                    Last Name
-                </th>
-                <th>
-                    First Name
-                </th>
-                <th>
-                    Address
-                </th>
-                <th>
-                    City
-                </th>
-                <th>
-                    Province
-                </th>
-                <th>
-                    Postal Code
-                </th>
-                <th>
-                    Phone: Main
-                </th>
-                <th>
-                    Phone: Cell
-                </th>
-                <th>
-                    Email
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Province)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PostCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumMain)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumCell)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
-            }
-
-        </table>
+        @Html.Partial("AddressTable", Model);
     </div>
 </div>

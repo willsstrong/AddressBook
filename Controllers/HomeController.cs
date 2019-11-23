@@ -15,7 +15,7 @@ namespace AddressBook.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Address Book WebApp";
 
             return View();
         }

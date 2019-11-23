@@ -32,6 +32,11 @@ namespace AddressBook.Controllers
             return View(query.ToList());
         }
 
+         public PartialViewResult AddressTable()
+        {
+            return PartialView();
+        }
+
         //Record Search Page  
         public ViewResult Search(string searchString)
         {

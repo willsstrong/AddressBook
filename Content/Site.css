@@ -25,6 +25,10 @@ textarea {
     max-width: 280px;
 }
 
+.button{
+    color:white;
+    margin:20px;
+}
 
 .nav-link.tab-link {
     border: solid 1px grey;
@@ -46,14 +50,19 @@ textarea {
     color:white;
 }
 
-
-
 .page-content .tab-pane {
     border: solid 1px black;
     border-top: 0;
     border-color: black;
-    min-height: 250px;
+    min-height: 500px;
     background-color: whitesmoke;
 }
 
-
+#footer{
+    position:absolute;
+    bottom:0;
+    width:90%;
+    height: 2.5rem;
+    margin:20px;
+    text-align:center;
+}
