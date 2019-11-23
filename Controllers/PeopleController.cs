@@ -25,12 +25,10 @@ namespace AddressBook.Controllers
             //GET 
             var people = from s in db.Person select s;
             
-            //asks for 
+            //asks for records where last name start with the letter in TabID
             var query = people.Where(s => s.LastName.StartsWith(TabID));
 
-
-
- 
+            //  Passes list of records to People/Index
             return View(query.ToList());
         }
 

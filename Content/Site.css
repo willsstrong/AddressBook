@@ -25,23 +25,28 @@ textarea {
     max-width: 280px;
 }
 
-#addess-tabs.action-tab{
-    background-color:cadetblue;
-    color:white;
+
+.nav-link.tab-link {
+    border: solid 1px grey;
+    background-color: darkgrey;
 }
 
-.nav-items.nav-link{
-    border:solid 1px blue;
+.nav-link.tab-link.active {
+    border-bottom-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
-.nav-link.tab-link{
-    border:solid 1px grey;
+.nav-link.active .tab-link {
+    background-color: whitesmoke;
+    color: black;
 }
 
 .tab-link{
     background-color:darkgrey;
     color:white;
 }
+
+
 
 .page-content .tab-pane {
     border: solid 1px black;
@@ -50,36 +55,5 @@ textarea {
     min-height: 250px;
     background-color: whitesmoke;
 }
-/*#address-tabs .span li {
-    border-color: black;
-    background-color: darkgray;
-    color: white;
-}
-#address-tabs li .span .active {
-    border-bottom-color: transparent;
-    background-color: whitesmoke;
-    color: black;
-}*/
 
-/*.nav.nav-tabs{
-    width:100%;
-}
-
-.nav.nav-tabs{
-    border-bottom-color: transparent;
-    background-color:whitesmoke;
-    color:black;
-}
-
-#address-tabs li {
-    border-color: black;
-    background-color: darkgray;
-    color: white;
-}
-
-#address-tabs li .active {
-    border-bottom-color: transparent;
-    background-color:whitesmoke;
-    color:black;
-}*/
 
