@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<AddressBook.Models.Person>
-
+@using AddressBook.Utilities
 
 @{
     ViewBag.Title = "Address Book";
@@ -8,9 +8,7 @@
 
 <h2>Address Book Index</h2>
 
-<button type="button" class="btn-secondary">  
-    @Html.ActionLink("Create New", "Create", new {@class = "btn-secondary"})
-</button>
+@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-secondary" })
 
 
 <!--    This will render a bootstrap tab ribbon with tabs for each letter from a-z  -->
@@ -19,11 +17,11 @@
     @for (char c = 'A'; c <= 'Z'; c++)  //  Render tabs from every letter
     {
         tabID = Char.ToString(c);   //  Needs to be string for controller to check for NULLorEmpty
-       
-        //  selected tab need to be have the active class applied
-        <li class="nav-item">
-            @Html.ActionLink(tabID, "Index", new { TabID = tabID }, 
-            new { @class = "nav-link tab-link" })
+
+        //  selected tab is made active manually by checking with the TabActive function found in Utilities/Utilities.cs
+        <li class="nav-item tab-item @Html.TabActive(tabID)" id="@tabID">
+            @Html.ActionLink(tabID, "Index", new { TabID = tabID },
+            new { @class = "nav-link tab-link"})
         </li>
 
     }

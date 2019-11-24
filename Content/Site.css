@@ -25,24 +25,18 @@ textarea {
     max-width: 280px;
 }
 
-.button{
+.btn .button{
     color:white;
-    margin:20px;
 }
 
+.active .nav-link.tab-link{
+    background-color: whitesmoke;
+    color:blue;
+    border-bottom-color:whitesmoke;
+}
 .nav-link.tab-link {
     border: solid 1px grey;
     background-color: darkgrey;
-}
-
-.nav-link.tab-link.active {
-    border-bottom-color: whitesmoke;
-    background-color: whitesmoke;
-}
-
-.nav-link.active .tab-link {
-    background-color: whitesmoke;
-    color: black;
 }
 
 .tab-link{

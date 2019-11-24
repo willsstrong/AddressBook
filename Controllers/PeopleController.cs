@@ -15,16 +15,14 @@ namespace AddressBook.Controllers
         // GET: People
         public ViewResult Index(string TabID)
         {
-            //page will load Tab 'A' by default or whatever tab was selected
-            ViewBag.TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;      
-            if (string.IsNullOrEmpty(TabID))
-            {
-                TabID = "A";
-            }
-            
+            //page will load Tab 'A' by default, or whatever Tab was selected
+            ViewBag.TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;
+            TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;  //without this check Tab 'A' would be active but empty when
+                                                                //returning from another page in site
+
             //GET 
             var people = from s in db.Person select s;
-            
+
             //asks for records where last name start with the letter in TabID
             var query = people.Where(s => s.LastName.StartsWith(TabID));
 
@@ -32,8 +30,9 @@ namespace AddressBook.Controllers
             return View(query.ToList());
         }
 
-         public PartialViewResult AddressTable()
-        {
+        // Partial View for displaying Address Data in a table
+        public PartialViewResult AddressTable()
+        {   
             return PartialView();
         }
 
@@ -42,15 +41,9 @@ namespace AddressBook.Controllers
         {
             var people = from s in db.Person select s;
 
- 
-                // Right now I am only searching by first name or last name.  It would be more functional to
-                // be able to search by any field. 
-                people = people.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
+            var query = people.Where(s => s.LastName.Contains(searchString) || s.FirstName.Contains(searchString));
 
-          
-            //Right now the seach page displays all records on start.  I want it to only show the heading and 
-            //no records until a search is requested.
-            return View(people.ToList());
+            return View(query.ToList());
         }
 
         // GET: People/Details/5
