@@ -5,6 +5,9 @@
     based on Model data passed from the calling View
 *@
 
+@{ 
+    string tabID = ViewBag.TabID;
+}
 <table class="table">
     <tr>
         <th>Last Name</th>
@@ -33,9 +36,9 @@
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-primary" })
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-info" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                    @Html.ActionLink("Edit", "Edit",new { id = item.Id , TabID = tabID},new { @class = "btn btn-outline-primary" })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id, TabID = tabID }, new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id, TabID = tabID }, new { @class = "btn btn-outline-danger" })
                     @*<a class="btn btn-secondary" href="#" id="@item.Id" data-toggle="modal" data-target="#exampleModal">Delete</a>*@
                 </div>
             </td>

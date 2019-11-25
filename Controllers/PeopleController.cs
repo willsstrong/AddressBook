@@ -47,8 +47,9 @@ namespace AddressBook.Controllers
         }
 
         // GET: People/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string TabID)
         {
+            ViewBag.TabID = TabID;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -92,8 +93,9 @@ namespace AddressBook.Controllers
         }
 
         // GET: People/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string TabID)
         {
+            ViewBag.TabID = TabID;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -123,8 +125,9 @@ namespace AddressBook.Controllers
         }
 
         // GET: People/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, string TabID)
         {
+            ViewBag.TabID = TabID;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
