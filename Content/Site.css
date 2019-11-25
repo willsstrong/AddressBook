@@ -47,18 +47,21 @@ textarea {
     margin: 10px;
 }
 
-.active .nav-link.tab-link{
+.active .nav-link.tab-link {
+    background-image:none;
     background-color: whitesmoke;
-    color:blue;
-    border-bottom-color:whitesmoke;
+    color: #333;
+    border-bottom-color: whitesmoke;
 }
 .nav-link.tab-link {
     border: solid 1px grey;
-    background-color: darkgrey;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#bfbfbf), color-stop(50%, #999), to(#8f8f8f));
+    background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
+    background-repeat: no-repeat;
+    /*background-color: darkgrey;*/
+    color: lightgray;
 }
-
-.tab-link{
-    background-color:darkgrey;
+.nav-link.tab-link:hover {
     color:white;
 }
 
@@ -69,4 +72,3 @@ textarea {
     min-height: 500px;
     background-color: whitesmoke;
 }
-

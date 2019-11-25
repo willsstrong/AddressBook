@@ -14,7 +14,7 @@
 <!--    This will render a bootstrap tab ribbon with tabs for each letter from a-z  -->
 <ul class="nav nav-tabs nav-justified" style="margin-top:20px" role="tablist" id="address-tabs">
 
-    @for (char c = 'A'; c <= 'Z'; c++)  //  Render tabs from every letter
+    @for (char c = 'A'; c <= 'Z'; c++)
     {
         tabID = Char.ToString(c);   //  Needs to be string for controller to check for NULLorEmpty
 
