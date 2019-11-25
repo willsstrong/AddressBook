@@ -12,7 +12,7 @@
 
 
 <!--    This will render a bootstrap tab ribbon with tabs for each letter from a-z  -->
-<ul class="nav nav-tabs nav-fill" style="margin-top:20px" role="tablist" id="address-tabs">
+<ul class="nav nav-tabs nav-justified" style="margin-top:20px" role="tablist" id="address-tabs">
 
     @for (char c = 'A'; c <= 'Z'; c++)  //  Render tabs from every letter
     {
@@ -21,7 +21,7 @@
         //  selected tab is made active manually by checking with the TabActive function found in Utilities/Utilities.cs
         <li class="nav-item tab-item @Html.TabActive(tabID)" id="@tabID">
             @Html.ActionLink(tabID, "Index", new { TabID = tabID },
-            new { @class = "nav-link tab-link"})
+            new { @class = "nav-link tab-link" })
         </li>
 
     }
@@ -33,3 +33,6 @@
         @Html.Partial("AddressTable", Model);
     </div>
 </div>
+
+
+

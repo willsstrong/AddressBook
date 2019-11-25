@@ -20,7 +20,7 @@ namespace AddressBook.Utilities
 
             var active = TabID == routeTab; //True if TabID matches TabID in URL
 
-            return active ? "active" : "";  //applie active class to the element calling this function
+            return active ? "active" : "";  //apply active class to the element calling this function
         }
     }
 }

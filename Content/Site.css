@@ -29,6 +29,20 @@ textarea {
     color:white;
 }
 
+.col .index{
+    max-width:1200px;
+}
+.col .details{
+    width:500px;
+    margin: 10px;
+}
+
+.details .card {
+    width: 30rem;
+    height: 3rem;
+    margin: 20px;
+}
+
 .active .nav-link.tab-link{
     background-color: whitesmoke;
     color:blue;
@@ -44,7 +58,7 @@ textarea {
     color:white;
 }
 
-.page-content .tab-pane {
+.tab-content .tab-pane {
     border: solid 1px black;
     border-top: 0;
     border-color: black;
