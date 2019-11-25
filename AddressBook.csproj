@@ -138,7 +138,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="DAL\AddressContext.cs" />
-    <Compile Include="DAL\AddressBookInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

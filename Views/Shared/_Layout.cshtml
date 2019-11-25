@@ -7,11 +7,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('[data-toggle="popover"]').popover();
-        });
-    </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -31,11 +26,8 @@
     </nav>
 
     <div class="body-content">
-        @RenderBody()
 
-        <footer id="footer">
-            <p>Written using ASP.NET MVC 5 with Enitity Framework 6, and BootStap 4</p>
-        </footer>
+        @RenderBody()
     </div>
 
 

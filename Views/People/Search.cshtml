@@ -5,10 +5,7 @@
 }
 
 
-<h2>Index</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Search</h2>
 
 @using (Html.BeginForm())
 {   //Render Search Box.  May include a dropdown menu to select other search fields
@@ -18,4 +15,4 @@
         <input type="submit" value="Search" />
     </p>
 }
-@Html.Partial("AddressTable", Model);
+@Html.Partial("AddressTable", Model)
