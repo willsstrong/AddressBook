@@ -58,7 +58,6 @@ textarea {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#bfbfbf), color-stop(50%, #999), to(#8f8f8f));
     background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
     background-repeat: no-repeat;
-    /*background-color: darkgrey;*/
     color: lightgray;
 }
 .nav-link.tab-link:hover {
