@@ -8,7 +8,7 @@
 
 <h2>Address Book Index</h2>
 
-@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-secondary" })
+@Html.ActionLink("Create New", "Create", new {TabID = ViewBag.TabID}, new { @class = "btn btn-secondary" })
 
 
 <!--    This will render a bootstrap tab ribbon with tabs for each letter from a-z  -->

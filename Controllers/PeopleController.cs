@@ -18,7 +18,7 @@ namespace AddressBook.Controllers
             //page will load Tab 'A' by default, or whatever Tab was selected
             ViewBag.TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;
             TabID = string.IsNullOrEmpty(TabID) ? "A" : TabID;  //without this check Tab 'A' would be active but empty when
-                                                                //returning from another page in site
+                                                                //returning from another view
 
             //GET 
             var people = from s in db.Person select s;
@@ -63,8 +63,9 @@ namespace AddressBook.Controllers
         }
 
         // GET: People/Create
-        public ActionResult Create()
+        public ActionResult Create(string TabID)
         {
+            ViewBag.TabID = TabID;
             return View();
         }
 
@@ -73,15 +74,16 @@ namespace AddressBook.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,Address,City,Province,PostCode,PhoneNumMain,PhoneNumCell,Email")] Person person)
+        public ActionResult Create([Bind(Include = "Id,LastName,FirstName,Address,City,Province,PostCode,PhoneNumMain,PhoneNumCell,Email")] Person person, string TabId)
         {
+            ViewBag.TabID = string.IsNullOrEmpty(TabId) ? "A":TabId;
             try
             {
                 if (ModelState.IsValid)
                 {
                     db.Person.Add(person);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index",new {TabID = TabId });
                 }
             }
             catch (System.Exception)
@@ -113,13 +115,14 @@ namespace AddressBook.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,Address,City,Province,PostCode,PhoneNumMain,PhoneNumCell,Email")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,LastName,FirstName,Address,City,Province,PostCode,PhoneNumMain,PhoneNumCell,Email")] Person person, string tabID)
         {
+            ViewBag.TabID = tabID;
             if (ModelState.IsValid)
             {
                 db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new {TabID = tabID });
             }
             return View(person);
         }
@@ -144,12 +147,13 @@ namespace AddressBook.Controllers
         // POST: People/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, string tabID)
         {
+            ViewBag.TabID = tabID;
             Person person = db.Person.Find(id);
             db.Person.Remove(person);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index",new {TabID = tabID });
         }
 
         protected override void Dispose(bool disposing)
