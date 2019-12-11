@@ -20,6 +20,7 @@
             {
                 new Person { FirstName = "Will",   LastName = "Strong"},
                 new Person { FirstName = "Mike",   LastName = "Anderson" },
+                new Person { FirstName = "Stacey",   LastName = "Roberts" },
                 new Person { FirstName = "Stephanie",   LastName = "Lee" },
                 new Person { FirstName = "Linda",   LastName = "Zacharius" }
 
