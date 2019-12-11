@@ -8,7 +8,7 @@
 @{ 
     string tabID = ViewBag.TabID;
 }
-<table class="table">
+<table id="people" class="table">
     <tr>
         <th>Last Name</th>
         <th>First Name</th>
@@ -38,13 +38,17 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     @Html.ActionLink("Edit", "Edit",new { id = item.Id , TabID = tabID},new { @class = "btn btn-outline-primary" })
                     @Html.ActionLink("Details", "Details", new { id = item.Id, TabID = tabID }, new { @class = "btn btn-outline-info" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id, TabID = tabID }, new { @class = "btn btn-outline-danger" })
-                    @*<a class="btn btn-secondary" href="#" id="@item.Id" data-toggle="modal" data-target="#exampleModal">Delete</a>*@
+                    <button data-person-id="@item.Id" class="btn btn-outline-danger js-delete">Delete</button>
                 </div>
             </td>
         </tr>
     }
 </table>
+
+
+
+
+
 
 <!-- Modal // Not Yet Functional -->
 <!-- The deleting of records will be done here instead of the 'Delete' view -->

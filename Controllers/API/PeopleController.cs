@@ -28,29 +28,29 @@ namespace AddressBook.Controllers.API
         }
 
         // GET /api/people/1
-        public PersonDTO GetPerson(int id)
+        public IHttpActionResult GetPerson(int id)
         {
             var person = _context.Person.SingleOrDefault(c => c.Id == id);
             if (person == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            return Mapper.Map<Person, PersonDTO>(person);
+                return NotFound();
+            return Ok(Mapper.Map<Person, PersonDTO>(person));
         }
 
-        // POST /api/customers
+        // POST /api/person
         [HttpPost]
-        public PersonDTO CreatePerson(PersonDTO personDto)
+        public IHttpActionResult CreatePerson(PersonDTO personDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             var person = Mapper.Map<PersonDTO, Person>(personDto);
             _context.Person.Add(person);
             _context.SaveChanges();
 
             personDto.Id = person.Id;
-            return personDto;
+            return Created(new Uri(Request.RequestUri + "/" + person.Id), personDto);
         }
 
-        // PUT /api/person/1
+        // PUT /api/people/1
         [HttpPut]
         public void UpdatePerson(int id, PersonDTO personDTO)
         {

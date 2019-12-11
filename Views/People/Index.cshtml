@@ -8,7 +8,7 @@
 
 <h2>Address Book Index</h2>
 
-@Html.ActionLink("Create New", "Create", new {TabID = ViewBag.TabID}, new { @class = "btn btn-secondary" })
+@Html.ActionLink("Create New", "Create", new { TabID = ViewBag.TabID }, new { @class = "btn btn-secondary" })
 
 
 <!--    This will render a bootstrap tab ribbon with tabs for each letter from a-z  -->
@@ -34,5 +34,24 @@
     </div>
 </div>
 
-
+@section scripts
+{
+    <script>
+        // DELETE ITEM
+        $(document).ready(function () {
+            $("#people .js-delete").on("click", function () {
+                var button = $(this);
+                if (confirm("Are you sure you want to delete this entry? ")) {
+                    $.ajax({
+                        url: "/api/people/" + button.attr("data-person-id"),
+                        method: "DELETE",
+                        success: function () {
+                            button.parents("tr").remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
 
